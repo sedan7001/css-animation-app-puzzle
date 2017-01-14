@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Anton);
+    @import url(https://fonts.googleapis.com/css?family=Montserrat:700,400);
+
+    body{
+        background-color: #333333;
+    }
+
+    .watch{
+        display: block;
+        position: relative;
+        margin-top: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px;
+        height: 300px;
+
+    }
+
+    #timer{
+        text-align: center;
+        height: 100px;
+        width: 400px;
+        position: relative;
+        font-family: "Anton", sans-serif;
+        font-size: 70px;
+        color: #FFF;
+        text-shadow: 0 0 15px #FFF;
+    }
+
+    .controls{
+        height: 200px;
+        width: 400px;
+        position: absolute;
+    }
+
+    /*.buttonholder{*/
+        /*width: 400px;*/
+        /*position: absolute;*/
+        /*top: 50%;*/
+        /*left: 52%;*/
+        /*-webkit-transform: translate(-50%, -50%);*/
+        /*-moz-transform: translate(-50%, -50%);*/
+        /*-ms-transform: translate(-50%, -50%);*/
+        /*-o-transform: translate(-50%, -50%);*/
+        /*transform: translate(-50%, -50%);*/
+    /*}*/
+
+    button{
+        height: 60px;
+        width: 150px;
+        margin: 20px;
+        border-radius: 30px;
+        border: 3px solid #FFF;
+        position: relative;
+        display: inline-block;
+        font-family: "Montserrat", sans-serif;
+        font-size: 20px;
+        color: #FFF;
+        background-color: #333;
+        outline: none;
+    }
+
+    button:hover{
+        box-shadow: 0px 0px 15px #FFFFFF;
+    }
+
+</style>
+<script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+
+<body><
+<div class="watch">
+    <div id="timer">
+        00:00:00
+    </div>
+    <div class="controls">
+        <div class="buttonholder">
+            <button name="start" id="start" onclick="start();">Start</button>
+            <button name="stop" id="stop" onclick="stop();">Stop</button>
+            <button name="resume" id="resume" onclick="resume();">Resume</button>
+            <button name="reset" id="reset" onclick="reset();">Reset</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

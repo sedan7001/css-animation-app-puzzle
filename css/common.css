@@ -1,0 +1,525 @@
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin:0px;
+
+}
+
+body {
+    min-height: 100%;
+    font-family: "Arial", sans-serif;
+    text-align: center;
+    overflow: hidden;
+    /*background: #100a1c;*/
+    background-image:
+            /*radial-gradient(50% 30% ellipse at center top, #201e40 0%, rgba(0,0,0,0) 100%),*/
+            radial-gradient(50% 20% ellipse at center bottom, #ece6e3 5%, #100a1c 100%);
+    background-attachment: fixed;
+}
+
+.wrap {
+    position: relative;
+    margin: 0 auto;
+    width: 24em;
+    overflow: hidden;
+    height: auto;
+}
+/*.wrap span{*/
+    /*color:white;*/
+    /*font-size:28px;*/
+
+/*}*/
+#header{
+
+    width:100%;
+    overflow:hidden;
+    height:auto;
+    padding-top:40px;
+    padding-bottom:40px;
+}
+
+#logo{
+    width: 22em;
+}
+
+.game {
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-perspective: 500px;
+    -moz-perspective:  500px;
+    -ms-perspective:  500px;
+    -o-perspective:  500px;
+    perspective: 500px;
+
+    width: 24em;
+    height: 24em;
+
+}
+
+@-webkit-keyframes matchAnim {
+    0% {
+        background: #bcffcc;
+    }
+    100% {
+        background: white;
+    }
+}
+
+@keyframes matchAnim {
+    0% {
+        background: #bcffcc;
+    }
+    100% {
+        background: white;
+    }
+}
+.card {
+    float: left;
+    width: 25%;
+    height: 25%;
+    text-align: center;
+    display: block;
+    -webkit-perspective: 500px;
+    perspective: 500px;
+    position: relative;
+    cursor: pointer;
+    z-index: 50;
+    -webkit-tap-highlight-color: transparent;
+    transition: all 0.5s;
+}
+
+.card .inside {
+    width: 100%;
+    height: 100%;
+    display: block;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: .4s ease-in-out;
+    transition: .4s ease-in-out;
+    background: white;
+}
+.card .inside.picked, .card .inside.matched {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+.card .inside.matched {
+    -webkit-animation: 1s matchAnim ease-in-out;
+    animation: 1s matchAnim ease-in-out;
+    -webkit-animation-delay: .4s;
+    animation-delay: .4s;
+}
+.card .front, .card .back {
+    border: 1px solid black;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+}
+.card .back{
+     padding:0.7em;
+}
+.card .front img, .card .back img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+
+}
+.card .front {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.modal-overlay {
+    display: none;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal {
+    display: none;
+    position: relative;
+    width: 500px;
+    height: 500px;
+    max-height: 90%;
+    max-width: 90%;
+    min-height: 380px;
+    margin: 0 auto;
+    background: white;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    padding-top: 10px ;
+}
+.modal .winner {
+    font-size: 80px;
+    text-align: center;
+    font-family: "Anton", sans-serif;
+    color: #bfbfbf;
+    text-shadow: 0px 3px 0 black;
+}
+.modal .continue{
+    font-family: "Anton", sans-serif;
+    margin: 10px ;
+    margin-bottom:35px;
+    padding: 10px 0px;
+    display: inline-block;
+    font-size: 20px;
+    border: none;
+    background: #6e7fcd;
+    background: -webkit-linear-gradient(#d1d1d1, #100a1c);
+    background: linear-gradient(#d1d1d1, #100a1c);
+    border: 1px solid #222;
+    border-radius: 5px;
+    color: white;
+    text-shadow: 0px 1px 0 black;
+    cursor: pointer;
+    width:160px;
+}
+.modal .continue:hover {
+    background: -webkit-linear-gradient(#222, black);
+    background: linear-gradient(#222, black);
+}
+.modal .hardmode {
+    font-family: "Anton", sans-serif;
+    margin: 10px ;
+    margin-bottom:35px;
+    padding: 10px 0px;
+    display: inline-block;
+    font-size: 20px;
+    border: none;
+    background: #6e7fcd;
+    background: -webkit-linear-gradient(#d1d1d1, #100a1c);
+    background: linear-gradient(#d1d1d1, #100a1c);
+    border: 1px solid #222;
+    border-radius: 5px;
+    color: white;
+    text-shadow: 0px 1px 0 black;
+    cursor: pointer;
+    width:160px;
+}
+.modal .hardmode:hover {
+    background: -webkit-linear-gradient(#222, black);
+    background: linear-gradient(#222, black);
+}
+.modal .message {
+    text-align: center;
+}
+.modal .message a {
+    text-decoration: none;
+    color: #28afe6;
+    font-weight: bold;
+    background: #3a559f;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+.modal .message a:hover {
+    color: #56c0eb;
+    border-bottom: 1px dotted #56c0eb;
+}
+
+.modal .social {
+
+    text-align: center;
+}
+.modal .social a {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+}.modal .social a img{
+     width:50px;
+
+ }
+/*@media (min-width: 440px) {*/
+    /*.wrap{*/
+        /*width:13em;*/
+    /*}*/
+    /*.game{*/
+        /*width:13em;*/
+        /*height:13em;*/
+    /*}*/
+    /*.card{*/
+        /*padding:0.1em;*/
+    /*}*/
+    /*.card .back {*/
+        /*padding: 0.2em;*/
+    /*}*/
+    /*#header{*/
+        /*padding-top:7px;*/
+    /*}*/
+    /*#header{*/
+        /*padding-bottom:7px;*/
+    /*}*/
+    /*#logo{*/
+        /*width:10em;*/
+    /*}*/
+/*}*/
+.modal .continue{
+    margin: 5px;
+    font-size: 15px;
+    width:160px;
+}
+.modal .hardmode {
+    margin:5px;
+    font-size: 15px;
+    width:160px;
+}
+.modal .social a{
+    margin-top:0px;
+}
+@media (min-width: 440px) {
+    .wrap{
+        width:30em;
+    }
+    .game{
+        width:30em;
+        height:30em;
+    }
+    .card{
+        padding:0.2em;
+    }
+    .card .back {
+        padding: 0.5em;
+    }
+    #header{
+        padding-top:40px;
+    }
+    #header{
+        padding-bottom:40px;
+    }
+    #logo{
+        width:28em;
+    }
+}
+@media (min-width: 700px) {
+    .wrap{
+        width:13em;
+    }
+    .game{
+        width:13em;
+        height:13em;
+    }
+    .card{
+        padding:0em;
+    }
+    .card .back {
+        padding: 0.2em;
+    }
+    #header{
+        padding-top:7px;
+    }
+    #header{
+        padding-bottom:7px;
+    }
+    #logo{
+        width:12em;
+    }
+}
+
+/*@media (min-width: 750px) {*/
+    /*.wrap{*/
+        /*width:20em;*/
+    /*}*/
+    /*.game{*/
+        /*width:20em;*/
+        /*height:20em;*/
+    /*}*/
+    /*.card{*/
+        /*padding:0.1em;*/
+    /*}*/
+    /*.card .back {*/
+        /*padding: 0.2em;*/
+    /*}*/
+    /*#header{*/
+        /*padding-top:7px;*/
+    /*}*/
+    /*#header{*/
+        /*padding-bottom:7px;*/
+    /*}*/
+    /*#logo{*/
+        /*width:10em;*/
+    /*}*/
+/*}*/
+@media (min-width: 801px) {
+    .wrap{
+        width:20em;
+    }
+    .game{
+        width:20em;
+        height:20em;
+    }
+    .card{
+        padding:0em;
+    }
+    .card .back {
+        padding: 0.4em;
+    }
+    #header{
+        padding-top:20px;
+    }
+    #header{
+        padding-bottom:20px;
+    }
+    #logo{
+        width:19em;
+    }
+
+}
+
+@media (min-width: 1025px) {
+    .wrap{
+        width:28em;
+    }
+    .game{
+        width:28em;
+        height:28em;
+    }
+    .card{
+        padding:0.2em;
+    }
+    .card .back {
+        padding: 0.5em;
+    }
+     #logo{
+        width:26em;
+    }
+}
+
+
+@media (min-width: 1367px) {
+    .wrap{
+        width:36em;
+    }
+    .game{
+        width:36em;
+        height:36em;
+    }
+    .card{
+        padding:0.5em;
+    }
+    .card .back {
+        padding: 1em;
+    }
+    #logo{
+        width:33em;
+    }
+    #header{
+        padding-top:40px;
+    }
+    #header{
+        padding-bottom:40px;
+    }
+}
+
+@media (min-width: 1921px) {
+    .wrap{
+        width:60em;
+    }
+    .game{
+        width:60em;
+        height:60em;
+    }
+    .card{
+        padding:1em;
+    }
+    .card .back {
+        padding: 2em;
+    }
+    #logo{
+        width:56em;
+    }
+
+}
+
+
+#timer {
+    width: 100%;
+    text-align: center;
+    overflow:hidden;
+    height:auto;
+}
+.btn1{
+    padding-top:10px;
+    display:inline-block;
+    float:left;
+    width: 100%;
+}
+
+
+.btn1 button {
+
+    height:35px;
+    position: relative;
+    display: inline-block;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    color: #FFF;
+    background-color: #333;
+    outline: none;
+
+}
+.btn1 #start:hover{
+    box-shadow: 0px 0px 15px #FFFFFF;
+    cursor: pointer;
+}
+.btn1 #reset:hover{
+    box-shadow: 0px 0px 15px #FFFFFF;
+    cursor: pointer;
+}
+
+#start, #reset {
+    width:20%;
+    border-radius: 10px;
+    /*background-color: #3a559f;*/
+    /*border: 1px solid transparent;*/
+
+}
+
+#time {
+
+    border: 1px solid transparent;
+    background: transparent;
+    letter-spacing: 7px;
+    color: #777;
+    /*font-weight: bold;*/
+    text-shadow: 1px 1px 1px #fff;
+    transition: color .3s ease-in-out;
+    display:inline-block;
+
+    font-size: 1.5em;
+    height:35px;
+    width: 55%;
+    margin:0px;
+
+
+
+
+
+    /*position: relative;*/
+    /*font-family: "Anton", sans-serif;*/
+    /*font-size: 20px;*/
+    color: #FFF;
+    /*text-shadow: 0 0 4px #FFF;*/
+
+}
+
